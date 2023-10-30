@@ -4,6 +4,8 @@
   "description": "DinDin",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config config/app/webpack.config.js --progress",
+    "build:dev": "webpack serve --config config/app/webpack.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,9 +29,24 @@
     "graphql-ws": "5.14.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router-dom": "6.17.0"
+  },
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
+    "css-loader": "6.8.1",
+    "fork-ts-checker-webpack-plugin": "9.0.0",
+    "html-webpack-plugin": "5.5.3",
+    "postcss": "8.4.31",
+    "postcss-loader": "7.3.3",
+    "postcss-preset-env": "9.2.0",
+    "react-refresh-typescript": "2.0.9",
+    "style-loader": "3.3.3",
     "ts-loader": "9.4.4",
     "typescript": "5.2.2",
+    "typescript-plugin-css-modules": "5.0.2",
     "webpack": "5.88.2",
-    "webpack-dev-server": "4.15.1"
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "4.15.1",
+    "webpack-pwa-manifest": "4.3.0"
   }
 }
