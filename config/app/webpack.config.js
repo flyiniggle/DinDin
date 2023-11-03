@@ -27,11 +27,11 @@ module.exports = {
     path: path.join(paths.appBuild, 'assets'),
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
-    filename: '[name].js',
+    filename: PROD ? '[name].[contenthash].js' : '[name].js',
     // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: PROD ? '[name].[contenthash].js' : '[name].js',
+    chunkFilename: PROD ? '[name].[contenthash].js' : '[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
-    publicPath: publicPath,
+    publicPath: PROD ? publicPath : '/',
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
@@ -59,6 +59,8 @@ module.exports = {
     host: 'localhost',
     hot: true,
     port: 8080,
+    allowedHosts: 'all',
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -157,58 +159,57 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
-      new WebpackPwaManifest({
-        name: 'Din Din',
-        short_name: 'Din Din',
-        description: 'Meal tracking and yumminess.',
-        theme_color: '#ff9e01',
-        background_color: '#655643',
-        display: 'fullscreen',
-        scope: '/',
-        start_url: '/',
-        ios: true,
-        inject: true,
-        icons: [{
-            src: path.join(paths.appManifest, '72.png'),
-            sizes: '72x72',
-            type: 'image/png'
-        }, {
-            src: path.join(paths.appManifest, '96.png'),
-            sizes: '96x96',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, 'apple-120.png'),
-            sizes: '120x120',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, '128.png'),
-            sizes: '128x128',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, '144.png'),
-            sizes: '144x144',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, 'apple-180.png'),
-            sizes: '180x180',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, '192.png'),
-            sizes: '192x192',
-            type: 'image/png',
-            ios: true
-        }, {
-            src: path.join(paths.appManifest, '512.png'),
-            sizes: '512x512',
-            type: 'image/png',
-            ios: true
-        }
-      ]
+    new WebpackPwaManifest({
+      name: 'Din Din',
+      short_name: 'Din Din',
+      description: 'Meal tracking and yumminess.',
+      theme_color: '#ff9e01',
+      background_color: '#655643',
+      display: 'fullscreen',
+      scope: '/',
+      start_url: '/',
+      ios: true,
+      inject: true,
+      icons: [{
+          src: path.join(paths.appManifest, '72.png'),
+          sizes: '72x72',
+          type: 'image/png'
+      }, {
+          src: path.join(paths.appManifest, '96.png'),
+          sizes: '96x96',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, 'apple-120.png'),
+          sizes: '120x120',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, '128.png'),
+          sizes: '128x128',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, '144.png'),
+          sizes: '144x144',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, 'apple-180.png'),
+          sizes: '180x180',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, '192.png'),
+          sizes: '192x192',
+          type: 'image/png',
+          ios: true
+      }, {
+          src: path.join(paths.appManifest, '512.png'),
+          sizes: '512x512',
+          type: 'image/png',
+          ios: true
+      }]
     }),
     PROD ? false : new ReactRefreshWebpackPlugin({ overlay: false }),
     new ForkTsCheckerWebpackPlugin(),

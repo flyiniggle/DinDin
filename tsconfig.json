@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es2021",
+      "dom"
+    ],
+    "module": "es2020",
+    "moduleResolution": "node",
+    "outDir": "./build",
+    "baseUrl": "./src",
+    "paths": {
+      "dindin/*": [
+        "./src/*"
+      ],
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "target": "es6",
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "config",
+    "tsconfig.json"
+  ]
+}

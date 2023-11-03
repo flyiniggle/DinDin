@@ -3,8 +3,8 @@ const path = require('path');
 
 const rootDirectory = path.resolve(__dirname, '..', '..');
 const appDirectory = path.resolve(__dirname, '..', '..', 'src');
-const resolveRoot = relativePath => path.resolve(rootDirectory, relativePath);
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveRoot = relativePath => path.join(rootDirectory, relativePath);
+const resolveApp = relativePath => path.join(appDirectory, relativePath);
 
 
 module.exports = {
