@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "exclude": [
+    "src/server",
+    "node_modules",
+    "config",
+    "tsconfig.*.json"
+  ],
+  "compilerOptions": {
+    "lib": [
+      "es2021",
+      "dom"
+    ],
+    "jsx": "react",
+    "outDir": "build/assets",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "rootDir": "src/",
+  },
+}

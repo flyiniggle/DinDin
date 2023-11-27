@@ -16,4 +16,5 @@ module.exports = {
   appManifest: resolveRoot('manifest'),
   appNodeModules: resolveApp('node_modules'),
   appPackageJson: resolveApp('package.json'),
+  appServer: resolveApp('server'),
 };

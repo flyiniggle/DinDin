@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build:server && npm run build:client",
-    "build:client": "webpack --config config/app/webpack.config.js --progress",
-    "build:server": "tsc --project tsconfig.server.json",
+    "build:client": "NODE_ENV=production webpack --config config/app/webpack.config.js --progress",
+    "build:server": "NODE_ENV=production tsc --project tsconfig.server.json",
     "serve:dev": "nodemon --watch src/server  src/server/serve.ts",
     "start:dev": "webpack serve --config config/app/webpack.config.js --progress",
     "start": "",

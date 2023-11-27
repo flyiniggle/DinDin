@@ -87,12 +87,13 @@ module.exports = {
             test: /\.tsx?$/,
             loader: 'ts-loader',
             options: {
+              configFile: "tsconfig.client.json",
               getCustomTransformers: () => ({
                 before: [ PROD ? false : require('react-refresh-typescript')()].filter(Boolean)
               }),
               transpileOnly: !PROD,
             },
-            exclude: [ paths.appNodeModules ]
+            exclude: [ paths.appServer, paths.appNodeModules ]
           },
           // Process CSS
           {
@@ -212,7 +213,9 @@ module.exports = {
       }]
     }),
     PROD ? false : new ReactRefreshWebpackPlugin({ overlay: false }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: { configFile: "tsconfig.client.json"}
+    }),
     // new webpack.EnvironmentPlugin({
     //   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
     //   HASURA_GRAPHQL_ADMIN_SECRET: '',
