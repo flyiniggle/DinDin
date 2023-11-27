@@ -23,7 +23,7 @@ expressApp.use(Express.json());
 if (process.env.NODE_ENV === 'development') {
   expressApp.use(HistoryFallback());
 } else {
-  expressApp.use(Express.static(Path.join(__dirname, '..', '..', 'build')));1  
+  expressApp.use(Express.static(Path.join(__dirname, '..', 'assets')));1  
 }
 
 
