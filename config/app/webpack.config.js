@@ -5,16 +5,15 @@ process.traceDeprecation = true;
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const paths = require('./paths');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/assets/';
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const ENV = process.env.NODE_ENV || 'production';
 const PROD = ENV === 'production';
@@ -24,7 +23,7 @@ module.exports = {
   mode: ENV,
   entry: paths.appEntry,
   output: {
-    path: path.join(paths.appBuild, 'assets'),
+    path: path.join(paths.build, 'assets'),
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     filename: PROD ? '[name].[contenthash].js' : '[name].js',
@@ -56,11 +55,12 @@ module.exports = {
     plugins: [],
   },
   devServer: {
+    allowedHosts: 'all',
+    historyApiFallback: true,
     host: 'localhost',
     hot: true,
     port: 8080,
-    allowedHosts: 'all',
-    historyApiFallback: true,
+    server: 'https',
   },
   module: {
     rules: [
@@ -93,7 +93,7 @@ module.exports = {
               }),
               transpileOnly: !PROD,
             },
-            exclude: [ paths.appServer, paths.appNodeModules ]
+            //exclude: [ paths.server, paths.nodeModules ]
           },
           // Process CSS
           {

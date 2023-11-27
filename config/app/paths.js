@@ -11,12 +11,13 @@ const resolveServer = relativePath => path.join(serverDirectory, relativePath);
 
 module.exports = {
   appSrc: resolveApp(''),
-  appBuild: resolveRoot('build'),
   //appFavicon: resolveApp('client-src/public/favicon.ico'),
   appEntry: resolveApp('index.tsx'),
   appHtml: resolveApp('index.html'),
   appManifest: resolveRoot('manifest'),
-  appNodeModules: resolveRoot('node_modules'),
-  appPackageJson: resolveRoot('package.json'),
-  appServer: resolveServer(''),
+  build: resolveRoot('build'),
+  nodeModules: resolveRoot('node_modules'),
+  packageJson: resolveRoot('package.json'),
+  secrets: resolveRoot('dev-secrets'),
+  server: resolveServer(''),
 };
