@@ -16,6 +16,8 @@
         "./src/*"
       ],
     },
+    "rootDir": "src",
     "target": "es6",
   },
+  "include": [ "src/**/*" ]
 }

@@ -2,9 +2,11 @@ const path = require('path');
 
 
 const rootDirectory = path.resolve(__dirname, '..', '..');
-const appDirectory = path.resolve(__dirname, '..', '..', 'src');
+const appDirectory = path.resolve(__dirname, '..', '..', 'src', 'app');
+const serverDirectory = path.resolve(__dirname, '..', '..', 'src', 'server');
 const resolveRoot = relativePath => path.join(rootDirectory, relativePath);
 const resolveApp = relativePath => path.join(appDirectory, relativePath);
+const resolveServer = relativePath => path.join(serverDirectory, relativePath);
 
 
 module.exports = {
@@ -14,7 +16,7 @@ module.exports = {
   appEntry: resolveApp('index.tsx'),
   appHtml: resolveApp('index.html'),
   appManifest: resolveRoot('manifest'),
-  appNodeModules: resolveApp('node_modules'),
-  appPackageJson: resolveApp('package.json'),
-  appServer: resolveApp('server'),
+  appNodeModules: resolveRoot('node_modules'),
+  appPackageJson: resolveRoot('package.json'),
+  appServer: resolveServer(''),
 };

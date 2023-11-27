@@ -87,7 +87,7 @@ module.exports = {
             test: /\.tsx?$/,
             loader: 'ts-loader',
             options: {
-              configFile: "tsconfig.client.json",
+              configFile: path.join(paths.appSrc, "tsconfig.json"),
               getCustomTransformers: () => ({
                 before: [ PROD ? false : require('react-refresh-typescript')()].filter(Boolean)
               }),
@@ -214,7 +214,7 @@ module.exports = {
     }),
     PROD ? false : new ReactRefreshWebpackPlugin({ overlay: false }),
     new ForkTsCheckerWebpackPlugin({
-      typescript: { configFile: "tsconfig.client.json"}
+      typescript: { configFile: path.join(paths.appSrc, "tsconfig.json")}
     }),
     // new webpack.EnvironmentPlugin({
     //   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
